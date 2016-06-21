@@ -1,0 +1,128 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, img, ins, kbd, q, s, samp,
+small, strike, sub, sup, tt, var, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	font-size:100%;
+	font:inherit;
+	vertical-align:baseline;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display:block;
+}
+body {
+	line-height:1;
+}
+ol, ul {
+	list-style:none;
+}
+blockquote, q {
+	quotes:none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:'';
+	content:none;
+}
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+th,
+td {
+	text-align:left;
+}
+textarea {
+	resize:none;
+}
+address {
+	font-style:normal;
+}
+input, textarea, button, select {
+	border: none;
+	box-shadow: none;
+	border-radius: 0;
+	outline:none;
+	font:inherit;
+	-webkit-font-smoothing:inherit;
+	-webkit-appearance:none;
+}
+
+
+.sprite {
+	margin: 300px 100px;
+	position: relative;
+	width: 875px;
+
+	background-image: url(sprite.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	&__arrow {
+		display: none;
+
+		position: absolute;
+		top: -65px;
+
+		width: 0;
+		height: 100%;
+
+		background-color: royalblue;
+		//opacity: .2;
+
+		&_one {
+			display: block;
+		}
+	}
+
+	&__field {
+		display: none;
+
+		position: absolute;
+		top: 0;
+		left: 50%;
+
+		width: 30px;
+		height: 30px;
+		margin-left: -15px;
+
+		text-align: center;
+		border: 2px solid rosybrown;
+
+		color: #000;
+
+		&_one {
+			display: block;
+		}
+	}
+
+	&__line-wrapper	{
+		position: relative;
+		height: 85px;
+		width: 750px;
+		margin-left: 35px;
+
+		box-sizing: border-box;
+	}
+
+	&__line {
+		position: absolute;
+		top: 0;
+		width: 0;
+		height: 40px;
+		background-color: rosybrown;
+		opacity: 0.5;
+	}
+}

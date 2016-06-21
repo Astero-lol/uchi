@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+	<div class="task">
+		<span class="task__item task__item_one"></span> + <span class="tast__item task__item_two"></span> = <span class="task-result">?</span>
+	</div>
+	<div class="sprite">
+		<div class="sprite__line-wrapper">
+			<div class="sprite__line"></div>
+			<div class="sprite__arrow sprite__arrow_one">
+				<input type="text" class="sprite__field sprite__field_one">
+				<span class="sprite__answer"></span>
+			</div>
+			<div class="sprite__arrow sprite__arrow_two">
+				<input type="text" class="sprite__field sprite__field_two">
+				<span class="sprite__answer"></span>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+	<script>
+
+		(function ($) {
+			$(function() {
+				var a = 7,
+					b = 4,
+					sectionWidth = 39;
+
+				// task
+				var taskItemOne = $('.task__item_one'),
+					taskItemTwo = $('.task__item_two');
+
+				// sprite
+				var arrowOne = $('.sprite__arrow_one'),
+					arrowTwo = $('.sprite__arrow_two'),
+					fieldOne = $('.sprite__field');
+
+				taskItemOne.text(a);
+				taskItemTwo.text(b);
+
+//
+
+				var arrowPosition = function (el, number, offset) {
+					el.css({'width': sectionWidth * number, 'left': sectionWidth * offset });
+				};
+
+				arrowPosition(arrowOne, a);
+				arrowPosition(arrowTwo, b, a)
+
+				fieldOne.on('input', function (e) {
+					var value = parseFloat(e.target.value);
+					if(value == a) {
+						alert('kek');
+					}
+				})
+			});
+		})(jQuery);
+
+	</script>
+</body>
+</html>
