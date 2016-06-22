@@ -157,10 +157,7 @@ select {
   border-radius: 50%;
   text-align: center;
   transform: translate(0, 45%);
-  transition: width .5s .4s;
-  opacity: 0;
-  animation: show .3s .5s;
-  animation-fill-mode: forwards;
+  transition: width .5s;
 }
 .sprite__arrow_one {
   display: block;
@@ -182,7 +179,7 @@ select {
   border: 1px solid darkgray;
   color: #000;
   opacity: 0;
-  animation: show .7s .5s;
+  animation: show .7s .8s;
   animation-fill-mode: forwards;
   box-sizing: border-box;
 }
@@ -223,11 +220,20 @@ select {
   animation: show .7s .5s;
   animation-fill-mode: forwards;
 }
+.task__body {
+  margin-bottom: 20px;
+}
+.task__win {
+  display: none;
+}
 .task__item,
 .task__field,
-.task__resilt {
+.task__result {
   display: inline-block;
   vertical-align: top;
+}
+.task__item {
+  padding: 0 5px;
 }
 .task__item.error {
   background-color: orange;

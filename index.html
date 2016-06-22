@@ -7,8 +7,11 @@
 </head>
 <body>
 	<div class="task">
-		<span class="task__item task__item_one"></span> + <span class="task__item task__item_two"></span> = <span class="task__result">?</span>
-		<input type="text" class="task__field" maxlength="2">
+		<div class="task__body">
+			<span class="task__item task__item_one"></span> + <span class="task__item task__item_two"></span> = <span class="task__result">?</span>
+			<input type="text" class="task__field" maxlength="2">
+		</div>
+		<div class="task__win">Все верно! Ты молодец, продолжай в том же духе! :)</div>
 	</div>
 	<div class="sprite">
 		<div class="sprite__line-wrapper">
@@ -25,98 +28,7 @@
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	<script>
-
-		(function ($) {
-			$(function() {
-				var a = 5,
-					b = 8,
-					duration = 300,
-					sectionWidth = 39;
-
-				// task
-				var taskItem = $('.task__item'),
-					taskResult = $('.task__result'),
-					taskField = $('.task__field'),
-					taskItemOne = $('.task__item_one'),
-					taskItemTwo = $('.task__item_two');
-
-				// sprite
-				var arrowOne = $('.sprite__arrow_one'),
-					arrowTwo = $('.sprite__arrow_two'),
-					field = $('.sprite__field'),
-					fieldTwo = $('.sprite__field_two');
-
-				taskItemOne.text(a);
-				taskItemTwo.text(b);
-
-//
-
-				var arrowPosition = function (el, number, offset) {
-					el.css({'width': sectionWidth * number, 'left': sectionWidth * offset});
-				};
-
-				arrowPosition(arrowOne, a);
-
-//				var validate = function () {
-//					console.log($(this).index(this));
-//				};
-
-
-				field.on('input', function () {
-					var self = $(this),
-						value = parseFloat(self.val()),
-						number = self.data('number');
-
-					switch (number) {
-						case 1:
-							if(value == a) {
-								self.fadeOut(duration).next('.sprite__answer').text(a);
-								arrowPosition(arrowTwo, b, a);
-								taskItem.removeClass('error');
-								fieldTwo.focus();
-							} else {
-								self.addClass('error');
-								taskItemOne.addClass('error');
-							}
-							break;
-
-						case 2:
-							if(value == b) {
-								self.fadeOut(duration).next('.sprite__answer').text(b);
-								taskItem.removeClass('error');
-								taskResult.fadeOut(duration, function () {
-									taskField.fadeIn(duration).focus();
-								});
-							} else {
-								self.addClass('error');
-								taskItemTwo.addClass('error');
-							}
-							break;
-					}
-
-				});
-
-				taskField.on('input', function () {
-					var self = $(this),
-						value = parseFloat(self.val()),
-						result = a + b;
-					if(value == result) {
-						self.removeClass('error').fadeOut(duration, function () {
-							taskResult.text(result).fadeIn(duration);
-						});
-					} else {
-						self.addClass('error');
-					}
-				});
-
-//				fieldOne.on('input', function () {
-//					validate();
-//				});
-
-			});
-		})(jQuery);
-
-	</script>
+	<script src="validate.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>

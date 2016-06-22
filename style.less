@@ -73,8 +73,6 @@ input, textarea, button, select {
 	background-position: center;
 	
 	&__arrow {
-		//display: none;
-
 		position: absolute;
 		top: -65px;
 
@@ -84,15 +82,9 @@ input, textarea, button, select {
 		border: 2px solid darkred;
 		border-radius: 50%;
 		text-align: center;
-		//opacity: .2;
 
 		transform: translate(0, 45%);
-		transition: width .5s .4s;
-
-		opacity: 0;
-
-		animation: show .3s .5s;
-		animation-fill-mode: forwards;
+		transition: width .5s;
 
 		&_one {
 			display: block;
@@ -108,8 +100,6 @@ input, textarea, button, select {
 	}
 
 	&__field {
-		//display: none;
-
 		position: absolute;
 		top: -35px;
 		left: 50%;
@@ -124,7 +114,7 @@ input, textarea, button, select {
 
 		opacity: 0;
 
-		animation: show .7s .5s;
+		animation: show .7s .8s;
 		animation-fill-mode: forwards;
 
 		box-sizing: border-box;
@@ -177,12 +167,21 @@ input, textarea, button, select {
 	animation: show .7s .5s;
 	animation-fill-mode: forwards;
 
-	&__item, &__field, &__resilt {
+	&__body {
+		margin-bottom: 20px;
+	}
+
+	&__win {
+		display: none;
+	}
+
+	&__item, &__field, &__result {
 		display: inline-block;
 		vertical-align: top;
 	}
 
 	&__item {
+		padding: 0 5px;
 
 		&.error {
 			background-color: orange;
