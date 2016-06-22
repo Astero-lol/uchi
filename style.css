@@ -154,12 +154,12 @@ select {
   width: 0;
   height: 100%;
   background-color: royalblue;
+  text-align: center;
 }
 .sprite__arrow_one {
   display: block;
 }
 .sprite__field {
-  display: none;
   position: absolute;
   top: 0;
   left: 50%;

@@ -13,11 +13,11 @@
 		<div class="sprite__line-wrapper">
 			<div class="sprite__line"></div>
 			<div class="sprite__arrow sprite__arrow_one">
-				<input type="text" class="sprite__field sprite__field_one">
+				<input type="text" class="sprite__field sprite__field_one" data-number="1">
 				<span class="sprite__answer"></span>
 			</div>
 			<div class="sprite__arrow sprite__arrow_two">
-				<input type="text" class="sprite__field sprite__field_two">
+				<input type="text" class="sprite__field sprite__field_two" data-number="2">
 				<span class="sprite__answer"></span>
 			</div>
 		</div>
@@ -30,6 +30,7 @@
 			$(function() {
 				var a = 7,
 					b = 4,
+					firstActive = true,
 					sectionWidth = 39;
 
 				// task
@@ -51,14 +52,40 @@
 				};
 
 				arrowPosition(arrowOne, a);
-				arrowPosition(arrowTwo, b, a)
+				arrowPosition(arrowTwo, b, a);
+
+//				var validate = function () {
+//					console.log($(this).index(this));
+//				};
+
 
 				fieldOne.on('input', function (e) {
-					var value = parseFloat(e.target.value);
-					if(value == a) {
-						alert('kek');
+					var value = parseFloat(e.target.value),
+						number = $(this).data('number'),
+						self = $(this);
+
+					switch (number) {
+						case 1:
+							if(value == a) {
+								self.fadeOut(300).next('.sprite__answer').text(a);
+
+							} else {
+								alert('ll')
+							}
+							break;
+
+						case 2:
+							if(value == b) {
+								self.fadeOut(300).next('.sprite__answer').text(b);
+							}
 					}
-				})
+
+				});
+
+//				fieldOne.on('input', function () {
+//					validate();
+//				});
+
 			});
 		})(jQuery);
 
