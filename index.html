@@ -7,17 +7,18 @@
 </head>
 <body>
 	<div class="task">
-		<span class="task__item task__item_one"></span> + <span class="tast__item task__item_two"></span> = <span class="task-result">?</span>
+		<span class="task__item task__item_one"></span> + <span class="task__item task__item_two"></span> = <span class="task__result">?</span>
+		<input type="text" class="task__field" maxlength="2">
 	</div>
 	<div class="sprite">
 		<div class="sprite__line-wrapper">
 			<div class="sprite__line"></div>
 			<div class="sprite__arrow sprite__arrow_one">
-				<input type="text" class="sprite__field sprite__field_one" data-number="1">
+				<input type="text" class="sprite__field sprite__field_one" data-number="1" maxlength="1">
 				<span class="sprite__answer"></span>
 			</div>
 			<div class="sprite__arrow sprite__arrow_two">
-				<input type="text" class="sprite__field sprite__field_two" data-number="2">
+				<input type="text" class="sprite__field sprite__field_two" data-number="2" maxlength="1">
 				<span class="sprite__answer"></span>
 			</div>
 		</div>
@@ -28,19 +29,23 @@
 
 		(function ($) {
 			$(function() {
-				var a = 7,
-					b = 4,
-					firstActive = true,
+				var a = 5,
+					b = 8,
+					duration = 300,
 					sectionWidth = 39;
 
 				// task
-				var taskItemOne = $('.task__item_one'),
+				var taskItem = $('.task__item'),
+					taskResult = $('.task__result'),
+					taskField = $('.task__field'),
+					taskItemOne = $('.task__item_one'),
 					taskItemTwo = $('.task__item_two');
 
 				// sprite
 				var arrowOne = $('.sprite__arrow_one'),
 					arrowTwo = $('.sprite__arrow_two'),
-					fieldOne = $('.sprite__field');
+					field = $('.sprite__field'),
+					fieldTwo = $('.sprite__field_two');
 
 				taskItemOne.text(a);
 				taskItemTwo.text(b);
@@ -48,38 +53,61 @@
 //
 
 				var arrowPosition = function (el, number, offset) {
-					el.css({'width': sectionWidth * number, 'left': sectionWidth * offset });
+					el.css({'width': sectionWidth * number, 'left': sectionWidth * offset});
 				};
 
 				arrowPosition(arrowOne, a);
-				arrowPosition(arrowTwo, b, a);
 
 //				var validate = function () {
 //					console.log($(this).index(this));
 //				};
 
 
-				fieldOne.on('input', function (e) {
-					var value = parseFloat(e.target.value),
-						number = $(this).data('number'),
-						self = $(this);
+				field.on('input', function () {
+					var self = $(this),
+						value = parseFloat(self.val()),
+						number = self.data('number');
 
 					switch (number) {
 						case 1:
 							if(value == a) {
-								self.fadeOut(300).next('.sprite__answer').text(a);
-
+								self.fadeOut(duration).next('.sprite__answer').text(a);
+								arrowPosition(arrowTwo, b, a);
+								taskItem.removeClass('error');
+								fieldTwo.focus();
 							} else {
-								alert('ll')
+								self.addClass('error');
+								taskItemOne.addClass('error');
 							}
 							break;
 
 						case 2:
 							if(value == b) {
-								self.fadeOut(300).next('.sprite__answer').text(b);
+								self.fadeOut(duration).next('.sprite__answer').text(b);
+								taskItem.removeClass('error');
+								taskResult.fadeOut(duration, function () {
+									taskField.fadeIn(duration).focus();
+								});
+							} else {
+								self.addClass('error');
+								taskItemTwo.addClass('error');
 							}
+							break;
 					}
 
+				});
+
+				taskField.on('input', function () {
+					var self = $(this),
+						value = parseFloat(self.val()),
+						result = a + b;
+					if(value == result) {
+						self.removeClass('error').fadeOut(duration, function () {
+							taskResult.text(result).fadeIn(duration);
+						});
+					} else {
+						self.addClass('error');
+					}
 				});
 
 //				fieldOne.on('input', function () {
